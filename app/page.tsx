@@ -372,23 +372,6 @@ export default function ChatPage() {
       )}
 
       <div className="flex-1 flex flex-col min-h-0">
-        <div className="flex-shrink-0 flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-purple-600">
-          <div className="flex items-center">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="lg:hidden mr-2 text-white hover:bg-white/10"
-            >
-              <Menu className="w-5 h-5" />
-            </Button>
-            <div className="flex items-center space-x-2">
-              <Bot className="w-6 h-6 text-white" />
-              <h1 className="text-xl font-bold text-white">AI MULTI AGENTS</h1>
-            </div>
-          </div>
-        </div>
-
         <div className="flex-1 min-h-0 overflow-hidden">
           {messages.length === 0 ? (
             <div className="h-full flex items-center justify-center p-8 overflow-y-auto">
@@ -398,7 +381,7 @@ export default function ChatPage() {
                 </div>
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">How can I help you today?</h2>
                 <p className="text-gray-600 mb-8">
-                  I&apos;m your AI assistant with specialized agents for content writing, digital marketing, and web
+                 I&apos;m your AI assistant with specialized agents for content writing, digital marketing, and web
                   development.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
