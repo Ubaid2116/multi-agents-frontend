@@ -116,7 +116,6 @@ export default function ChatPage() {
 
       const data: ChatResponse = await response.json()
 
-      // Keep the original markdown formatting instead of removing it
       simulateStreaming(data.reply, (fullText) => {
         const assistantMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -159,7 +158,6 @@ export default function ChatPage() {
   }
 
   const formatMessage = (content: string) => {
-    // Split content by code blocks first to preserve them
     const codeBlockRegex = /(```[\s\S]*?```)/g
     const parts = content.split(codeBlockRegex)
 
@@ -219,7 +217,6 @@ export default function ChatPage() {
         )
       }
 
-      // Handle regular text with markdown formatting
       return (
         <div key={index} className="space-y-2">
           {formatTextWithMarkdown(part)}
@@ -257,14 +254,12 @@ export default function ChatPage() {
     lines.forEach((line, lineIndex) => {
       const trimmedLine = line.trim()
 
-      // Skip empty lines
       if (!trimmedLine) {
         flushList()
         elements.push(<br key={`br-${lineIndex}`} />)
         return
       }
 
-      // Handle headings
       if (trimmedLine.startsWith("#")) {
         flushList()
         const level = trimmedLine.match(/^#+/)?.[0].length || 1
@@ -288,7 +283,6 @@ export default function ChatPage() {
         return
       }
 
-      // Handle unordered lists
       if (trimmedLine.match(/^[-*+]\s/)) {
         if (listType !== "ul") {
           flushList()
@@ -303,7 +297,6 @@ export default function ChatPage() {
         return
       }
 
-      // Handle ordered lists
       if (trimmedLine.match(/^\d+\.\s/)) {
         if (listType !== "ol") {
           flushList()
@@ -318,7 +311,6 @@ export default function ChatPage() {
         return
       }
 
-      // Handle regular paragraphs
       flushList()
       if (trimmedLine) {
         elements.push(
@@ -329,14 +321,12 @@ export default function ChatPage() {
       }
     })
 
-    // Flush any remaining list
     flushList()
 
     return elements
   }
 
   const formatInlineMarkdown = (text: string) => {
-    // Handle inline code first to preserve it
     const parts = text.split(/(`[^`]+`)/g)
 
     return parts.map((part, index) => {
@@ -348,10 +338,8 @@ export default function ChatPage() {
         )
       }
 
-      // Handle bold and italic text
       let formattedText: React.ReactNode = part
 
-      // Handle bold text (**text**)
       formattedText = part.split(/(\*\*[^*]+\*\*)/g).map((segment, segIndex) => {
         if (segment.startsWith("**") && segment.endsWith("**")) {
           return (
@@ -361,7 +349,6 @@ export default function ChatPage() {
           )
         }
 
-        // Handle italic text (*text*)
         return segment.split(/(\*[^*]+\*)/g).map((subSegment, subIndex) => {
           if (subSegment.startsWith("*") && subSegment.endsWith("*") && !subSegment.startsWith("**")) {
             return (
@@ -376,11 +363,6 @@ export default function ChatPage() {
 
       return <span key={index}>{formattedText}</span>
     })
-  }
-
-  const newChat = () => {
-    setMessages([])
-    setInput("")
   }
 
   return (
@@ -402,7 +384,7 @@ export default function ChatPage() {
             </Button>
             <div className="flex items-center space-x-2">
               <Bot className="w-6 h-6 text-white" />
-              <h1 className="text-xl font-bold text-white">AI Multi Agents</h1>
+              <h1 className="text-xl font-bold text-white">AI MULTI AGENTS</h1>
             </div>
           </div>
         </div>
@@ -416,7 +398,7 @@ export default function ChatPage() {
                 </div>
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">How can I help you today?</h2>
                 <p className="text-gray-600 mb-8">
-                  I'm your AI assistant with specialized agents for content writing, digital marketing, and web
+                  I&apos;m your AI assistant with specialized agents for content writing, digital marketing, and web
                   development.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
